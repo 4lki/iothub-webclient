@@ -20,8 +20,10 @@
     "@types/paho-mqtt": "^1.0.6",
     "jest": "^26.6.3",
     "serve": "^13.0.2",
-    "standard": "^16.0.4"
+    "standard": "^16.0.4",
+    "typescript": "^5.2.2"
   },
+  "main": "dist/index.js",
   "standard": {
     "globals": [
       "Paho",
