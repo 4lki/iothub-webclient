@@ -1,5 +1,5 @@
-import { AzDpsClient } from "./types/AzDpsClient";
-import { AzIoTHubClient } from "./types/AzIoTHubClient";
+export * from "./AzDpsClient";
+export * from "./AzIoTHubClient";
 
 export type ConnectionInfo = {
   scopeId: string;
@@ -24,5 +24,3 @@ export type CommandInfo = {
   rid: number;
   dirty: boolean;
 };
-
-export { AzIoTHubClient, AzDpsClient };
