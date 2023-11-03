@@ -1,6 +1,6 @@
 {
   "name": "iothub-webclient",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Web application to connect to Azure IoT Hub from the browser",
   "repository": "https://github.com/ridomin/iothub-webclient",
   "type": "module",
