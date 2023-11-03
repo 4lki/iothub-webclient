@@ -17,14 +17,16 @@
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "^26.0.24",
-    "@types/paho-mqtt": "^1.0.6",
     "jest": "^26.6.3",
     "serve": "^13.0.2",
     "standard": "^16.0.4",
     "typescript": "^5.2.2"
   },
-  "main": "dist/index.js",
+  "browser": "dist/index.js",
   "types": "types/index.d.ts",
+  "files": [
+    "libs/*.js"
+  ],
   "standard": {
     "globals": [
       "Paho",
@@ -39,6 +41,7 @@
     ]
   },
   "dependencies": {
-    "ansi-regex": "^6.0.1"
+    "ansi-regex": "^6.0.1",
+    "@types/paho-mqtt": "^1.0.6"
   }
 }
