@@ -1,4 +1,4 @@
-import { ackPayload } from '../AzIoTHubClient.js'
+import { ackPayload } from '../src/AzIoTHubClient.js'
 
 test('singleProp at root', () => {
   const payload = {

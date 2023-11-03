@@ -1,5 +1,5 @@
-import { AzDpsClient, createHmac } from './src/AzDpsClient.js'
-import { AzIoTHubClient, ackPayload } from './src/AzIoTHubClient.js'
+import { AzDpsClient, createHmac } from './AzDpsClient.js'
+import { AzIoTHubClient, ackPayload } from './AzIoTHubClient.js'
 
 const createApp = () => {
   let telemetryInterval

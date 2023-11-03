@@ -1,4 +1,4 @@
-export type ConnectionInfo = {
+type ConnectionInfo = {
     scopeId: string,
     deviceId: string,
     hubName: string,
@@ -9,12 +9,12 @@ export type ConnectionInfo = {
     connected: bool
 }
 
-export type DeviceTwin = {
+type DeviceTwin = {
     reported: any,
     desired: any
 }
 
-export type CommandInfo = {
+type CommandInfo = {
     method: string,
     payload: string,
     response: string,
