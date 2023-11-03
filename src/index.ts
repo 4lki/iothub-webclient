@@ -1,3 +1,2 @@
-import { AzIoTHubClient, AzDpsClient } from "..";
-
-export { AzIoTHubClient, AzDpsClient };
+export * from "./AzDpsClient";
+export * from "./AzIoTHubClient";

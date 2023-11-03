@@ -69,12 +69,7 @@ export class AzIoTHubClient {
   disconnectCallback: (err: any) => void;
   _onReadTwinCompleted: (twin: any) => void;
   _onUpdateTwinCompleted: () => void;
-  /**
-   * @param {string} host
-   * @param {string} deviceId
-   * @param {string} key
-   * @param {string} [modelId]
-   */
+
   constructor(host, deviceId, key, modelId) {
     this.connected = false;
     this.host = host;
@@ -89,35 +84,15 @@ export class AzIoTHubClient {
       this.deviceId
     );
 
-    /**
-     * @description Callback when a commnand invocation is received
-     * @param {string} method
-     * @param {string} payload
-     * @param {number} rid
-     */
     this.c2dCallback = (method, payload, rid) => {};
 
-    /**
-     * @description Callback for desired properties upadtes
-     * @param {string} desired
-     */
     this.desiredPropCallback = (desired) => {};
-    /**
-     * @param {any} err
-     */
     this.disconnectCallback = (err) => {
       console.log(err);
     };
-    /**
-     * @param {any} twin
-     */
     this._onReadTwinCompleted = (twin) => {};
     this._onUpdateTwinCompleted = () => {};
   }
-
-  /**
-   * @description Connects to Azure IoT Hub using MQTT over websockets
-   */
   async connect() {
     let userName = `${this.host}/${this.deviceId}/?api-version=2020-05-31-preview`;
     if (this.modelId) userName += `&model-id=${this.modelId}`;
