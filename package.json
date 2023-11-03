@@ -24,6 +24,7 @@
     "typescript": "^5.2.2"
   },
   "main": "dist/index.js",
+  "types": "types/index.d.ts",
   "standard": {
     "globals": [
       "Paho",
