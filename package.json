@@ -22,11 +22,8 @@
     "standard": "^16.0.4",
     "typescript": "^5.2.2"
   },
-  "browser": "dist/index.js",
+  "main": "dist/index.js",
   "types": "types/index.d.ts",
-  "files": [
-    "libs/*.js"
-  ],
   "standard": {
     "globals": [
       "Paho",
