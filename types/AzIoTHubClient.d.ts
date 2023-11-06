@@ -12,6 +12,7 @@ export declare class AzIoTHubClient {
     disconnectCallback: (err: any) => void;
     _onReadTwinCompleted: (twin: any) => void;
     _onUpdateTwinCompleted: () => void;
+    _onTwinError: (err: any) => void;
     constructor(host: any, deviceId: any, key: any, modelId: any);
     connect(): Promise<unknown>;
     /**

@@ -66,6 +66,7 @@ class AzIoTHubClient {
         };
         this._onReadTwinCompleted = (twin) => { };
         this._onUpdateTwinCompleted = () => { };
+        this._onTwinError = (err) => { };
     }
     connect() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -92,6 +93,12 @@ class AzIoTHubClient {
                     }
                     if (destinationName.startsWith("$iothub/twin/res/204/?$rid=" + this.rid)) {
                         this._onUpdateTwinCompleted();
+                    }
+                    if (destinationName.startsWith("$iothub/twin/res/5")) {
+                        this._onTwinError(payloadString);
+                    }
+                    if (destinationName.startsWith("$iothub/twin/res/429")) {
+                        this._onTwinError(payloadString);
                     }
                     if (destinationName.indexOf("methods/POST") > 1) {
                         const destParts = destinationName.split("/"); // $iothub/methods/POST/myCommand/?$rid=2
@@ -165,6 +172,9 @@ class AzIoTHubClient {
             this._onReadTwinCompleted = (twin) => {
                 resolve(JSON.parse(twin));
             };
+            this._onTwinError = (err) => {
+                reject(err);
+            };
         });
     }
     /**
@@ -179,6 +189,9 @@ class AzIoTHubClient {
         return new Promise((resolve, reject) => {
             this._onUpdateTwinCompleted = () => {
                 resolve(204);
+            };
+            this._onTwinError = (err) => {
+                reject(err);
             };
         });
     }

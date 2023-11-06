@@ -69,6 +69,7 @@ export class AzIoTHubClient {
   disconnectCallback: (err: any) => void;
   _onReadTwinCompleted: (twin: any) => void;
   _onUpdateTwinCompleted: () => void;
+  _onTwinError: (err:any) => void;
 
   constructor(host, deviceId, key, modelId) {
     this.connected = false;
@@ -92,6 +93,7 @@ export class AzIoTHubClient {
     };
     this._onReadTwinCompleted = (twin) => {};
     this._onUpdateTwinCompleted = () => {};
+    this._onTwinError = (err) => {};
   }
   async connect() {
     let userName = `${this.host}/${this.deviceId}/?api-version=2020-05-31-preview`;
@@ -125,6 +127,12 @@ export class AzIoTHubClient {
           destinationName.startsWith("$iothub/twin/res/204/?$rid=" + this.rid)
         ) {
           this._onUpdateTwinCompleted();
+        }
+        if (destinationName.startsWith("$iothub/twin/res/5")) {
+          this._onTwinError(payloadString);
+        }
+        if (destinationName.startsWith("$iothub/twin/res/429")) {
+          this._onTwinError(payloadString);
         }
         if (destinationName.indexOf("methods/POST") > 1) {
           const destParts = destinationName.split("/"); // $iothub/methods/POST/myCommand/?$rid=2
@@ -198,6 +206,9 @@ export class AzIoTHubClient {
       this._onReadTwinCompleted = (twin) => {
         resolve(JSON.parse(twin));
       };
+      this._onTwinError = (err) => {
+        reject(err);
+      };
     });
   }
 
@@ -213,6 +224,9 @@ export class AzIoTHubClient {
     return new Promise((resolve, reject) => {
       this._onUpdateTwinCompleted = () => {
         resolve(204);
+      };
+      this._onTwinError = (err) => {
+        reject(err);
       };
     });
   }
